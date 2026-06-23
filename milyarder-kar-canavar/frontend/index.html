@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🦁 Milyarder Kar Canavarı | 2026</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <div class="header-content">
+        <div>
+            <h1>🦁 MILYARDER KAR CANAVARI</h1>
+            <p>2026 | Lokal AI (Qwen2.5) | Real-time Analiz</p>
+        </div>
+        <div class="header-time" id="current-time">--:--:--</div>
+    </div>
+    <div style="max-width: none; padding: 0 20px;">
+        <div class="nav-tabs">
+            <button class="active" onclick="showSection('dashboard')">📊 DASHBOARD</button>
+            <button onclick="showSection('crypto')">₿ KRİPTO</button>
+            <button onclick="showSection('gold')">🥇 ALTIN</button>
+            <button onclick="showSection('stock')">📈 BORSA</button>
+            <button onclick="showSection('realestate')">🏠 EMLAK</button>
+            <button onclick="showSection('cars')">🚗 ARABA</button>
+            <button onclick="showSection('sports')">⚽ SPOR</button>
+        </div>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+    <!-- DASHBOARD SECTION -->
+    <section id="dashboard-section" class="section active">
+        <h2 style="color: var(--accent); margin-bottom: 20px; font-size: 1.8em;">📋 BUGÜNÜN TAM ANALİZİ</h2>
+        
+        <div class="grid">
+            <!-- KRİPTO -->
+            <div class="card">
+                <h3>₿ KRİPTO</h3>
+                <button class="action-btn" onclick="loadCrypto()">📊 Analiz Yükle</button>
+                <div id="crypto-dashboard" class="loading">
+                    <span class="spinner">⚙️</span> Veriler işleniyor...
+                </div>
+            </div>
+            
+            <!-- ALTIN -->
+            <div class="card">
+                <h3>🥇 ALTIN</h3>
+                <button class="action-btn" onclick="loadGold()">📊 Analiz Yükle</button>
+                <div id="gold-dashboard" class="loading">
+                    <span class="spinner">⚙️</span> Veriler işleniyor...
+                </div>
+            </div>
+            
+            <!-- BORSA -->
+            <div class="card">
+                <h3>📈 BORSA</h3>
+                <button class="action-btn" onclick="loadStock()">📊 Analiz Yükle</button>
+                <div id="stock-dashboard" class="loading">
+                    <span class="spinner">⚙️</span> Veriler işleniyor...
+                </div>
+            </div>
+            
+            <!-- SPOR -->
+            <div class="card">
+                <h3>⚽ SPOR KUPONU</h3>
+                <button class="action-btn" onclick="loadSports()">📊 Analiz Yükle</button>
+                <div id="sports-dashboard" class="loading">
+                    <span class="spinner">⚙️</span> Veriler işleniyor...
+                </div>
+            </div>
+            
+            <!-- EMLAK -->
+            <div class="card">
+                <h3>🏠 EMLAK</h3>
+                <div class="input-group">
+                    <input type="text" id="re-city" placeholder="Şehir" value="Istanbul">
+                    <input type="text" id="re-district" placeholder="İlçe" value="Kadikoy">
+                </div>
+                <button class="action-btn" onclick="loadRE()">📊 Analiz Yükle</button>
+                <div id="realestate-dashboard" class="loading">
+                    <span class="spinner">⚙️</span> Veriler işleniyor...
+                </div>
+            </div>
+            
+            <!-- ARABA -->
+            <div class="card">
+                <h3>🚗 ARABA</h3>
+                <div class="input-group">
+                    <input type="text" id="car-brand" placeholder="Marka" value="Toyota">
+                    <input type="text" id="car-model" placeholder="Model" value="Corolla">
+                </div>
+                <button class="action-btn" onclick="loadCars()">📊 Analiz Yükle</button>
+                <div id="cars-dashboard" class="loading">
+                    <span class="spinner">⚙️</span> Veriler işleniyor...
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KRİPTO SECTION -->
+    <section id="crypto-section" class="section">
+        <div class="card">
+            <h3>₿ KRİPTO PAZAR ANALİZİ</h3>
+            <div class="input-group">
+                <button class="action-btn" onclick="loadCryptoFull()">🔍 TÜM BORSALARDAN FİYAT</button>
+                <button class="action-btn" onclick="loadCryptoNews()">📰 HABERLERİ GÖR</button>
+            </div>
+            <div id="crypto-full" class="loading">
+                <span class="spinner">⚙️</span> Yükleniyor...
+            </div>
+        </div>
+    </section>
+
+    <!-- ALTIN SECTION -->
+    <section id="gold-section" class="section">
+        <div class="card">
+            <h3>🥇 ALTIN PAZAR ANALİZİ</h3>
+            <div class="input-group">
+                <button class="action-btn" onclick="loadGoldFull()">🔍 FİYATLARI GÖR</button>
+                <button class="action-btn" onclick="loadGoldNews()">📰 HABERLERİ GÖR</button>
+            </div>
+            <div id="gold-full" class="loading">
+                <span class="spinner">⚙️</span> Yükleniyor...
+            </div>
+        </div>
+    </section>
+
+    <!-- BORSA SECTION -->
+    <section id="stock-section" class="section">
+        <div class="card">
+            <h3>📈 BORSA PAZAR ANALİZİ</h3>
+            <div class="input-group">
+                <button class="action-btn" onclick="loadStockFull()">📊 BİST 30</button>
+                <button class="action-btn" onclick="loadStockNews()">📰 HABERLERİ GÖR</button>
+            </div>
+            <div id="stock-full" class="loading">
+                <span class="spinner">⚙️</span> Yükleniyor...
+            </div>
+        </div>
+    </section>
+
+    <!-- EMLAK SECTION -->
+    <section id="realestate-section" class="section">
+        <div class="card">
+            <h3>🏠 EMLAK PAZAR ANALİZİ</h3>
+            <div class="input-group">
+                <input type="text" id="re-city-detail" placeholder="Şehir" value="Istanbul">
+                <input type="text" id="re-district-detail" placeholder="İlçe" value="Kadikoy">
+                <button class="action-btn" onclick="loadREFull()">🔍 DETAYLI ANALİZ</button>
+            </div>
+            <div id="realestate-full" class="loading">
+                <span class="spinner">⚙️</span> Yükleniyor...
+            </div>
+        </div>
+    </section>
+
+    <!-- ARABA SECTION -->
+    <section id="cars-section" class="section">
+        <div class="card">
+            <h3>🚗 ARABA PAZAR ANALİZİ</h3>
+            <div class="input-group">
+                <input type="text" id="car-brand-detail" placeholder="Marka" value="Toyota">
+                <input type="text" id="car-model-detail" placeholder="Model" value="Corolla">
+                <button class="action-btn" onclick="loadCarsFull()">🔍 DETAYLI ANALİZ</button>
+            </div>
+            <div id="cars-full" class="loading">
+                <span class="spinner">⚙️</span> Yükleniyor...
+            </div>
+        </div>
+    </section>
+
+    <!-- SPOR SECTION -->
+    <section id="sports-section" class="section">
+        <div class="card">
+            <h3>⚽ SPOR BAHIS ANALİZİ</h3>
+            <button class="action-btn" onclick="loadSportsFull()">🎯 BUGÜNÜN KUPONU</button>
+            <div id="sports-full" class="loading">
+                <span class="spinner">⚙️</span> Yükleniyor...
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    <p>🦁 Milyarder Kar Canavarı 2026 | Powered by Qwen2.5 AI</p>
+    <p style="font-size: 0.9em; opacity: 0.7;">Bu uygulama eğitim ve analiz amaçlıdır. Yatırım tavsiyesi değildir.</p>
+</div>
+
+<script src="/js/app.js"></script>
+</body>
+</html>
